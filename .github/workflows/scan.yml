@@ -1,3 +1,7 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: "Security vulnerability scan"
 
 on:
@@ -13,18 +17,19 @@ permissions:
   contents: read
 
 jobs:
-  scan:
+  pip-audit:
+    name: pip-audit
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73f4b25eb01ab1d68c # v4.2.2
         with:
           ref: ${{ inputs.ref }}
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0b936f57f0eb036e9d58a5ffff33b3338866b0ff # v5.3.0
         with:
           python-version: '3.11'
           cache: 'pip'

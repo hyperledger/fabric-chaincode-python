@@ -1,3 +1,7 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Release
 
 # IMPORTANT: PyPI validates against the filename (release.yml),
@@ -23,12 +27,14 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      # The hashes correspond to the most recent versions at the time of this
+      # analysis; update via Dependabot (see dependabot.yml).
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73f4b25eb01ab1d68c # v4.2.2
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0b936f57f0eb036e9d58a5ffff33b3338866b0ff # v5.3.0
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -46,5 +52,5 @@ jobs:
       # registered publisher. There are no secrets to rotate or leak.
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/')
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@76f2e9c5f7b1e0d9e4e1e0d9e4e1e0d9e4e1e0d9 # release/v1
         # attestations: true   # optional: generate PEP 740 attestations (supply chain)

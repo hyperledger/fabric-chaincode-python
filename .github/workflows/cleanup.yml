@@ -1,3 +1,7 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Cleanup Old Workflow Runs
 
 on:
@@ -22,7 +26,7 @@ jobs:
 
     steps:
       - name: Delete old workflow runs
-        uses: actions/github-script@v7
+        uses: actions/github-script@5abfd9e446c0c8b6e024a6a4a59c71529e9b7fa1 # v7.0.1
         with:
           script: |
             const owner = context.repo.owner;
