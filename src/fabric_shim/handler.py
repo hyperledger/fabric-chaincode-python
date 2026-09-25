@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 import datetime
 from typing import AsyncIterable
 import asyncio

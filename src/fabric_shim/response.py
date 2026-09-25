@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
 from fabric_protos.peer import proposal_response_pb2 as pb
 
