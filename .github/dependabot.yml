@@ -1,0 +1,27 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+version: 2
+
+updates:
+  # Update the GitHub actions used in the workflows. 
+  # This allows maintaining the pin by SHA + version comment.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        group-by: dependency-name
+
+  # Update the pip dependencies declared in requirements.txt
+  # and requirements-dev.txt.
+  - package-ecosystem: "pip"
+    directories:
+      - "/"
+    schedule:
+      interval: weekly
+    groups:
+      pip-dependencies:
+        group-by: dependency-name

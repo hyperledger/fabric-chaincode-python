@@ -1,0 +1,96 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Branch, tag or SHA to test.
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit test
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -r requirements-dev.txt
+      - name: Run tests
+        run: python -m pytest -q
+
+  # TODO: If you have integration tests against a real Fabric peer,
+  # uncomment this job and adjust the paths. It is the equivalent of the
+  # `integrationtest` job in the Java workflow.
+  # integrationtest:
+  #   name: Integration test
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 45
+  #   steps:
+  #     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+  #       with:
+  #         ref: ${{ inputs.ref }}
+  #         fetch-depth: 0
+  #     - name: Set up Python
+  #       uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+  #       with:
+  #         python-version: '3.11'
+  #         cache: 'pip'
+  #     - name: Install dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         python -m pip install -r requirements.txt -r requirements-dev.txt
+  #     - name: Ensure that the Peer/weft tools are available
+  #       run: |
+  #         curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh | bash -s -- binary
+  #         npm install -g @hyperledger-labs/weft
+  #         echo "FABRIC_CFG_PATH=$GITHUB_WORKSPACE/config" >> $GITHUB_ENV
+  #         echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
+  #     - name: versions
+  #       run: |
+  #         peer version
+  #         weft --version
+  #     - name: Integration Tests
+  #       run: python -m pytest -q integration_test/
+
+  # TODO: If you publish a base Docker image for Python chaincode,
+  # uncomment this job. It is the equivalent of the Java `docker` job. 
+  # docker:
+  #   name: Build Docker image
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 30
+  #   permissions:
+  #     contents: read
+  #     packages: write
+  #   steps:
+  #     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+  #       with:
+  #         ref: ${{ inputs.ref }}
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@c7c853bb5d3c0d0de6c775bda84e8f9be9bed9339 # v3.10.0
+  #     - name: Build image
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         context: .
+  #         file: ./Dockerfile
+  #         push: false
+  #         tags: fabric-pythonenv:latest

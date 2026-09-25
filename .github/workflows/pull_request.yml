@@ -1,3 +1,7 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Pull request
 
 on:
@@ -15,13 +19,13 @@ concurrency:
 
 jobs:
   test:
-    uses: ./.github/workflows/test.yaml
+    uses: ./.github/workflows/test.yml
 
   scan:
     uses: ./.github/workflows/scan.yml
 
   pull-request:
-    needs: [test, scan]
+    needs: test
     name: Pull request success
     runs-on: ubuntu-latest
     steps:

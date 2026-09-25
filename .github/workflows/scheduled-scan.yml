@@ -1,8 +1,12 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: "Scheduled vulnerability scan"
 
 on:
   schedule:
-    - cron: "27 3 * * *"
+    - cron: "20 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -27,9 +31,16 @@ jobs:
           fi
           echo "value=${tag}" >> "${GITHUB_OUTPUT}"
 
-  scan:
+  scan-release:
     name: Scan ${{ needs.latest-release-version.outputs.tag_name }}
     needs: latest-release-version
     uses: ./.github/workflows/scan.yml
     with:
       ref: ${{ needs.latest-release-version.outputs.tag_name }}
+
+  # This job runs on the `main` branch and scans the `main` branch at the default branch's HEAD. 
+  # Without it, vulnerabilities introduced in `main`
+  # but not yet released would go unnoticed until the next release.
+  scan-latest:
+    name: Scan latest
+    uses: ./.github/workflows/scan.yml
