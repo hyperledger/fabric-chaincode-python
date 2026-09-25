@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 from abc import ABC, abstractmethod
 
 from fabric_protos.peer import proposal_response_pb2 as pb
