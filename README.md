@@ -1,36 +1,76 @@
-# fabric-chaincode-python
+# Hyperledger Fabric Chaincode Python
 
-[![Lifecycle](https://img.shields.io/badge/lifecycle-experimental- orange.svg)](https://github.com/hyperledger/fabric-chaincode-python/blob/main/lifecycle.md)
+![GitHub License](https://img.shields.io/github/license/hyperledger/fabric-chaincode-python)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/14928/badge)](https://bestpractices.coreinfrastructure.org/projects/14928)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/hyperledger/fabric-chaincode-python/badge)](https://scorecard.dev/viewer/?uri=github.com/hyperledger/fabric-chaincode-python)
+
 [![Python Version](https://img.shields.io/pypi/pyversions/fabric-chaincode-python.svg)](https://pypi.org/project/fabric-chaincode-python/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub Actions](https://github.com/hyperledger/fabric-chaincode-python/workflows/CI/badge.svg)](https://github.com/hyperledger/fabric-chaincode-python/actions?query=workflow%3ACI)
 [![GitHub Release](https://img.shields.io/github/v/release/hyperledger/fabric-chaincode-python.svg)](https://github.com/hyperledger/fabric-chaincode-python/releases)
 
-# Hyperledger Fabric Chaincode shim and Contract API for Python
-
-This repository provides the Python implementation of Hyperledger Fabric chaincode shim and contract API. Chaincodes (smart contracts) can be written in Python to run inside Hyperledger Fabric peers.
+This is a Python based implementation of Hyperledger Fabric chaincode shim and contract
+API, which enables development of smart contracts using the Python language. Chaincodes
+(smart contracts) written in Python run inside Hyperledger Fabric peers.
 
 ## Documentation
 
-- API documentation: https://hyperledger.github.io/fabric-chaincode-python/
-- Full Documentation on Hyperledger Fabric: https://hyperledger-fabric.readthedocs.io/
-- Samples repository: https://github.com/hyperledger/fabric-samples
-- Quick-start tutorial: TUTORIAL.md
+- [API documentation](https://hyperledger.github.io/fabric-chaincode-python/)
+- [Full Hyperledger Fabric documentation](https://hyperledger-fabric.readthedocs.io/)
+- [Samples repository](https://github.com/hyperledger/fabric-samples)
 
-## Compatibility
+## Project structure
 
-For details on what Python versions and Hyperledger Fabric versions can be used, see the [COMPATIBILITY.md](COMPATIBILITY.md).
+```
+src/
+├── fabric_contract_api/   Python Contract API
+└── fabric_shim/           Python chaincode shim (Fabric 2.x)
+```
 
-## npm Shrinkwrap
+- **fabric_contract_api** - Contains the Python contract API used to write smart contracts with the high-level contract programming model.
+- **fabric_shim** - Contains the Python classes that implement the chaincode shim API and the way to communicate with Fabric peers.
 
-Strongly recommended to create a `requirements.txt` file after testing and before putting your contract into production.
+## Building and testing
+
+Make sure you have the following prereqs installed:
+
+- [Python](https://www.python.org/) 3.11 or later
+- [pip](https://pip.pypa.io/en/stable/)
+
+Create a virtual environment and install the development dependencies:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e . -r requirements-dev.txt
+```
+
+Run the unit tests:
+
+```
+pytest tests/
+```
 
 ## Contributing
 
-If you are interested in contributing updates to this project, please start with the [contributing guide](CONTRIBUTING.md).
+We welcome contributions to the Hyperledger Fabric project in many forms. If you are
+interested in contributing updates to this project, please start with the
+[contributing guide](CONTRIBUTING.md).
 
-There is also a [release guide](RELEASING.md) describing the process for publishing new versions.
+There is also a [release guide](RELEASING.md) describing the process for publishing new
+versions.
 
-## Build Status
+## Community
 
-CI runs with Python 3.11 on `main` and `release-*` branches, and on pull requests.
+- [Hyperledger Community](https://www.hyperledger.org/community)
+- [Hyperledger mailing lists and archives](http://lists.hyperledger.org/)
+- [Hyperledger Chat](http://chat.hyperledger.org/channel/fabric)
+- [Hyperledger Fabric Wiki](https://wiki.hyperledger.org/display/Fabric)
+- [Hyperledger Code of Conduct](CODE_OF_CONDUCT.md)
+
+## License <a name="license"></a>
+
+Hyperledger Project source code files are made available under the Apache License,
+Version 2.0 (Apache-2.0), located in the [LICENSE](LICENSE) file. Hyperledger Project
+documentation files are made available under the Creative Commons Attribution 4.0
+International License (CC-BY-4.0), available at
+http://creativecommons.org/licenses/by/4.0/.
