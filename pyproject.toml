@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fabric-chaincode-python"
-version = "0.1.0"
+version = "2.5.0"
 description = "Hyperledger Fabric chaincode shim and contract API for Python (experimental)"
 readme = "README.md"
 license = {text = "Apache License v2.0"}
