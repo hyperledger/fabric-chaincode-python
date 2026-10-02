@@ -31,27 +31,10 @@ Then simply run::
 from __future__ import annotations
 
 import json
-import sys
 from dataclasses import dataclass
-from pathlib import Path
 from typing import List, Optional
 
-# Make sure the repository root is on ``sys.path`` so that the
-# ``src.fabric_contract_api`` packages can be imported when the file is
-# run directly.  Walk up the parent chain looking for the directory that
-# contains ``src/``.
-_HERE = Path(__file__).resolve().parent
-REPO_ROOT = None
-for parent in [_HERE, *_HERE.parents]:
-    if (parent / "src" / "fabric_contract_api").is_dir():
-        REPO_ROOT = parent
-        break
-if REPO_ROOT is None:
-    REPO_ROOT = Path(__file__).resolve().parents[3]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
-
-from src.fabric_contract_api import (  # noqa: E402
+from src.fabric_contract_api import (
     Contract,
     ContractChaincode,
     TransactionContextInterface,
