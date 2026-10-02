@@ -1,5 +1,5 @@
 grpcio==1.84.0
-grpclib==0.4.3
+grpclib==0.4.9
 protobuf>=5.27.0,<8.0.0
 hyperledger-fabric-protos>=0.3.7.dev1,<0.4.0
 jsonschema>=4.0.0
