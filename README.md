@@ -4,7 +4,7 @@
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/14928/badge)](https://bestpractices.coreinfrastructure.org/projects/14928)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/hyperledger/fabric-chaincode-python/badge)](https://scorecard.dev/viewer/?uri=github.com/hyperledger/fabric-chaincode-python)
 
-[![Python Version](https://img.shields.io/pypi/pyversions/fabric-chaincode-python.svg)](https://pypi.org/project/fabric-chaincode-python/)
+[![Python Version](https://img.shields.io/pypi/pyversions/fabric-chaincode-python.svg?cache=1)](https://pypi.org/project/fabric-chaincode-python/)
 [![GitHub Actions](https://github.com/hyperledger/fabric-chaincode-python/workflows/CI/badge.svg)](https://github.com/hyperledger/fabric-chaincode-python/actions?query=workflow%3ACI)
 [![GitHub Release](https://img.shields.io/github/v/release/hyperledger/fabric-chaincode-python.svg)](https://github.com/hyperledger/fabric-chaincode-python/releases)
 
