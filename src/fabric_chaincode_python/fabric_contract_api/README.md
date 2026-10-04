@@ -44,7 +44,7 @@ src/fabric_contract_api/
 ## Quick start
 
 ```python
-from src.fabric_contract_api import (
+from fabric_chaincode_python.fabric_contract_api import (
     Contract,
     ContractChaincode,
     TransactionContextInterface,

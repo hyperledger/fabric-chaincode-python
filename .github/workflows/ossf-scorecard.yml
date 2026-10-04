@@ -1,0 +1,41 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Scorecard
+
+on:
+  branch_protection_rule: {}   # re-evaluate if branch protection rules change
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 6 1,16 * *'    # 1st and 16th of each month at 06:23 UTC — keeps the badge fresh
+  workflow_dispatch: {}        # allows manually triggering the first run
+
+permissions: read-all
+
+jobs:
+  scorecard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      security-events: write   # Upload SARIF to code scanning
+      id-token: write          # OIDC: required for publish_results
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run Scorecard analysis
+        uses: ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc # v2.4.4
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_results: true   # publishes the badge results
+
+      - name: Upload to code-scanning
+        uses: github/codeql-action/upload-sarif@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3
+        with:
+          sarif_file: results.sarif

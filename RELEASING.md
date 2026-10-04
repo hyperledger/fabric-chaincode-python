@@ -92,7 +92,7 @@ Artifacts are available in GitHub Actions run details:
 
 ```bash
 pip install dist/fabric-chaincode-python-*.whl
-python -c "import src.fabric_shim; print('✓ Package imported successfully')"
+python -c "import fabric_chaincode_python; print('✓ Package imported successfully')"
 ```
 
 ## PyPI Publishing (Optional)

@@ -137,5 +137,5 @@ examples/ccaas/fabric-contract-api/asset-transfer-sbe/
 ## References
 
 - [fabric-shim version of this sample](../../fabric-shim/asset-transfer-sbe/)
-- [fabric_contract_api documentation](../../../src/fabric_contract_api/README.md)
+- [fabric_contract_api documentation](../../../../src/fabric_chaincode_python/fabric_contract_api/README.md)
 - [Hyperledger Fabric SBE docs](https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4no.html#state-based-endorsement)

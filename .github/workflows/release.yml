@@ -42,10 +42,47 @@ jobs:
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install build setuptools wheel
+          python -m pip install build twine packaging
 
       - name: Build distribution
         run: python -m build --sdist --wheel
+
+      - name: Check metadata
+        run: python -m twine check dist/*
+
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          python - <<'PY'
+          import glob
+          import os
+          import zipfile
+          from packaging.version import Version
+
+          tag = os.environ["GITHUB_REF_NAME"]
+          if not tag.startswith("v"):
+              raise SystemExit(f"Unexpected tag (must start with 'v'): {tag}")
+
+          wheels = glob.glob("dist/*.whl")
+          if not wheels:
+              raise SystemExit("No wheel found in dist/")
+
+          with zipfile.ZipFile(wheels[0]) as zf:
+              meta = next(n for n in zf.namelist() if n.endswith(".dist-info/METADATA"))
+              version = None
+              for line in zf.read(meta).decode().splitlines():
+                  if line.startswith("Version:"):
+                      version = line.split(":", 1)[1].strip()
+                      break
+          if version is None:
+              raise SystemExit("METADATA without version")
+
+          print(f"Git tag:         {tag}")
+          print(f"Package version: {version}")
+          if Version(tag.removeprefix("v")) != Version(version):
+              raise SystemExit(f"::error::Version mismatch: tag={tag}, package={version}")
+          print("OK: tag and version match")
+          PY
 
       # Trusted Publishing: no password required. The action obtains an ephemeral
       # OIDC token signed by GitHub, which PyPI validates against the

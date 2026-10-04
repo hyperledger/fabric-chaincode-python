@@ -47,13 +47,15 @@ asset-transfer-sbe) so you can compare implementations side-by-side.
 2. **Read**: each example has its own `README.md` with the full
    packaging / install / approve / commit / run / invoke / query
    sequence.
-3. **Run**: from the repository root,
-   ```bash
-   pip install -r requirements.txt
-   export CHAINCODE_ID="<package_id>"
-   export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
-   python examples/ccaas/<layer>/<scenario>/main.py
-   ```
+3. **Run**: from the repository root — create/activate a virtualenv and install dependencies, then start the example:
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  export CHAINCODE_ID="<package_id>"
+  export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
+  ./.venv/bin/python examples/ccaas/<layer>/<scenario>/main.py
+  ```
 
 ## What is CCAAS?
 
@@ -78,8 +80,8 @@ for more details on the CCAAS architecture.
 
 ## Related Documentation
 
-- [`fabric_shim` package](../src/fabric_shim/) — low-level chaincode shim.
-- [`fabric_contract_api` package](../src/fabric_contract_api/) — high-level
+- [`fabric_shim` package](../src/fabric_chaincode_python/fabric_shim/) — low-level chaincode shim.
+- [`fabric_contract_api` package](../src/fabric_chaincode_python/fabric_contract_api/) — high-level
   contract API (Python port of `fabric-contract-api-go`).
 - [Hyperledger Fabric Official Docs](https://hyperledger-fabric.readthedocs.io/)
 - [CCAAS Architecture](https://hyperledger-fabric.readthedocs.io/en/latest/cc_service.html)

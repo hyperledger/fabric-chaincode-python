@@ -1,7 +1,7 @@
 # fabric-shim Examples (CCAAS)
 
 These examples use the low-level **`fabric_shim`** package directly. You
-subclass [`Chaincode`](../../../src/fabric_shim/interfaces.py) and write
+subclass [`Chaincode`](../../../src/fabric_chaincode_python/fabric_shim/interfaces.py) and write
 `init` / `invoke` methods, dispatching on the function name by hand.
 
 ## When to choose fabric-shim
@@ -37,10 +37,10 @@ instructions.  The common pattern is:
 2. Build the CCAAS package using the example's `connection.json` /
    `metadata.json`.
 3. `peer lifecycle chaincode install / approveformyorg / commit`.
-4. Start the chaincode process:
-   ```bash
-   export CHAINCODE_ID="<package_id>"
-   export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
-   python examples/ccaas/fabric-shim/<example-name>/main.py
-   ```
+4. Start the chaincode process (use the repository virtualenv):
+  ```bash
+  export CHAINCODE_ID="<package_id>"
+  export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
+  ./.venv/bin/python examples/ccaas/fabric-shim/<example-name>/main.py
+  ```
 5. `peer chaincode invoke` / `query` against the running chaincode.

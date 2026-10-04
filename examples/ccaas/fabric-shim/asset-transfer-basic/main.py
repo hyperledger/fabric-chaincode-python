@@ -23,26 +23,10 @@ metadata generation for you), see
 """
 
 import json
-import sys
-from pathlib import Path
 
-# Make sure the repository root is on ``sys.path`` so that the
-# ``src.fabric_shim`` packages can be imported when the file is run directly.
-# Walk up the parent chain looking for the directory that contains ``src/``.
-_HERE = Path(__file__).resolve().parent
-REPO_ROOT = None
-for parent in [_HERE, *_HERE.parents]:
-    if (parent / "src" / "fabric_shim").is_dir():
-        REPO_ROOT = parent
-        break
-if REPO_ROOT is None:
-    REPO_ROOT = Path(__file__).resolve().parents[3]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
-
-from src.fabric_shim.interfaces import Chaincode, ChaincodeStubInterface
-from src.fabric_shim.server import start
-from src.fabric_shim.response import ResponseCode
+from fabric_chaincode_python.fabric_shim.interfaces import Chaincode, ChaincodeStubInterface
+from fabric_chaincode_python.fabric_shim.server import start
+from fabric_chaincode_python.fabric_shim.response import ResponseCode
 from fabric_protos.peer import proposal_response_pb2 as pb
 
 

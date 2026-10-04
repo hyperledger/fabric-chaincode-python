@@ -168,5 +168,5 @@ examples/ccaas/fabric-contract-api/asset-transfer-basic/
 ## References
 
 - [fabric-shim version of this sample](../../fabric-shim/asset-transfer-basic/)
-- [fabric_contract_api documentation](../../../src/fabric_contract_api/README.md)
+- [fabric_contract_api documentation](../../../../src/fabric_chaincode_python/fabric_contract_api/README.md)
 - [Hyperledger Fabric Chaincode as a Service](https://hyperledger-fabric.readthedocs.io/en/latest/cc_service.html)

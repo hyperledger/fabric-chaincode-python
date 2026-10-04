@@ -12,9 +12,9 @@
 
 - [ ] Legacy chaincode mode (optional)
 - [ ] Complete documentation
-- [ ] Publish to PyPI
+- [x] Publish to PyPI
 
 ## Q1-Q2 2027
 
 - [ ] Community adoption
-- [ ] Migration to official project (if applicable)
+- [x] Migration to official project (if applicable)

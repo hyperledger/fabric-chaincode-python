@@ -8,9 +8,9 @@ from typing import AsyncIterable, Type
 import grpc
 import queue
 
-from src.fabric_shim.handler import Handler
-from src.fabric_shim.interfaces import Chaincode
-from src.fabric_shim.logging import LOGGER
+from fabric_chaincode_python.fabric_shim.handler import Handler
+from fabric_chaincode_python.fabric_shim.interfaces import Chaincode
+from fabric_chaincode_python.fabric_shim.logging import LOGGER
 from fabric_protos.peer import chaincode_shim_pb2_grpc as ccshim_grpc_pb2
 from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
 
