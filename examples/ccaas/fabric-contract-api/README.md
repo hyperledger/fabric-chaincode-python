@@ -47,12 +47,12 @@ examples:
 2. Build the CCAAS package using the example's `connection.json` /
    `metadata.json`.
 3. `peer lifecycle chaincode install / approveformyorg / commit`.
-4. Start the chaincode process:
-   ```bash
-   export CHAINCODE_ID="<package_id>"
-   export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
-   python examples/ccaas/fabric-contract-api/<example-name>/main.py
-   ```
+4. Start the chaincode process (from the repository root, using the project's virtualenv):
+  ```bash
+  export CHAINCODE_ID="<package_id>"
+  export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
+  ./.venv/bin/python examples/ccaas/fabric-contract-api/<example-name>/main.py
+  ```
 5. `peer chaincode invoke` / `query` against the running chaincode —
    including the metadata query:
    ```bash

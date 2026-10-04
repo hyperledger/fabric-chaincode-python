@@ -46,7 +46,9 @@ style you prefer:
 2. **Pick a scenario**: `asset-transfer-basic/` (CRUD) or
    `asset-transfer-sbe/` (with transfer).
 3. **Open the example's `README.md`** — it has the full packaging,
-   install, approve, commit, run, invoke, and query sequence.
+   install, approve, commit, run, invoke, and query sequence. When running
+   examples locally prefer the repository virtualenv and invoke the
+   example with `./.venv/bin/python`.
 
 ## Common prerequisites
 

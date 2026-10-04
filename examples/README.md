@@ -47,13 +47,15 @@ asset-transfer-sbe) so you can compare implementations side-by-side.
 2. **Read**: each example has its own `README.md` with the full
    packaging / install / approve / commit / run / invoke / query
    sequence.
-3. **Run**: from the repository root,
-   ```bash
-   pip install -r requirements.txt
-   export CHAINCODE_ID="<package_id>"
-   export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
-   python examples/ccaas/<layer>/<scenario>/main.py
-   ```
+3. **Run**: from the repository root — create/activate a virtualenv and install dependencies, then start the example:
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  export CHAINCODE_ID="<package_id>"
+  export CHAINCODE_SERVER_ADDRESS="127.0.0.1:9999"
+  ./.venv/bin/python examples/ccaas/<layer>/<scenario>/main.py
+  ```
 
 ## What is CCAAS?
 
