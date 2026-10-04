@@ -22,12 +22,19 @@ API, which enables development of smart contracts using the Python language. Cha
 
 ```
 src/
-├── fabric_contract_api/   Python Contract API
-└── fabric_shim/           Python chaincode shim (Fabric 2.x)
+└── fabric_chaincode_python/
+    ├── fabric_contract_api/   Python Contract API
+    └── fabric_shim/           Python chaincode shim
+examples/
+└── ccaas/                     Example chaincodes (Chaincode-as-a-Service)
 ```
 
 - **fabric_contract_api** - Contains the Python contract API used to write smart contracts with the high-level contract programming model.
 - **fabric_shim** - Contains the Python classes that implement the chaincode shim API and the way to communicate with Fabric peers.
+- **examples** - Example chaincode implementations. See the
+  [examples README](examples/README.md) and the
+  [examples structure](examples/STRUCTURE.md) for the layout, conventions,
+  and quick start.
 
 ## Building and testing
 
