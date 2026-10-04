@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 import asyncio
-from src.fabric_shim.logging import LOGGER
+from fabric_chaincode_python.fabric_shim.logging import LOGGER
 
 
 class QueueMessage:

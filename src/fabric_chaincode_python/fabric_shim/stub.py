@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
-from src.fabric_shim.interfaces import ChaincodeStubInterface
-from src.fabric_shim.utils import (
+from fabric_chaincode_python.fabric_shim.interfaces import ChaincodeStubInterface
+from fabric_chaincode_python.fabric_shim.utils import (
     COMPOSITEKEY_NS,
     MIN_UNICODE_RUNE_VALUE,
     validate_composite_key_attribute,
@@ -11,7 +11,7 @@ from fabric_protos.peer import proposal_pb2 as pr_pb
 from fabric_protos.msp import identities_pb2 as id_pb
 from fabric_protos.peer import chaincode_event_pb2 as e_pb
 from collections.abc import Sequence
-from src.fabric_shim.logging import LOGGER
+from fabric_chaincode_python.fabric_shim.logging import LOGGER
 
 VALIDATION_PARAMETER: str = 'VALIDATION_PARAMETER'
 
@@ -147,7 +147,7 @@ class ChaincodeStub(ChaincodeStubInterface):
         to mean "unbounded".
         """
         collection = ''
-        from src.fabric_shim.iterators import StateQueryIterator
+        from fabric_chaincode_python.fabric_shim.iterators import StateQueryIterator
         from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
         from fabric_protos.ledger.queryresult import kv_query_result_pb2 as kv_pb
 
@@ -172,7 +172,7 @@ class ChaincodeStub(ChaincodeStubInterface):
         :meth:`aclose` method of the iterator when you want to stop early.
         """
         collection = ''
-        from src.fabric_shim.iterators import StateQueryIterator
+        from fabric_chaincode_python.fabric_shim.iterators import StateQueryIterator
         from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
         from fabric_protos.ledger.queryresult import kv_query_result_pb2 as kv_pb
 
@@ -198,7 +198,7 @@ class ChaincodeStub(ChaincodeStubInterface):
         Returns an async iterator yielding :class:`KV` records.
         """
         collection = ''
-        from src.fabric_shim.iterators import QueryResultIterator
+        from fabric_chaincode_python.fabric_shim.iterators import QueryResultIterator
         from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
         from fabric_protos.ledger.queryresult import kv_query_result_pb2 as kv_pb
 
@@ -218,7 +218,7 @@ class ChaincodeStub(ChaincodeStubInterface):
                                                 bookmark: str = ""):
         """Paginated version of :meth:`get_query_result`."""
         collection = ''
-        from src.fabric_shim.iterators import QueryResultIterator
+        from fabric_chaincode_python.fabric_shim.iterators import QueryResultIterator
         from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
         from fabric_protos.ledger.queryresult import kv_query_result_pb2 as kv_pb
 
@@ -244,7 +244,7 @@ class ChaincodeStub(ChaincodeStubInterface):
         Yields :class:`KeyModification` records (``tx_id``, ``value``,
         ``timestamp``, ``is_delete``).
         """
-        from src.fabric_shim.iterators import HistoryQueryIterator
+        from fabric_chaincode_python.fabric_shim.iterators import HistoryQueryIterator
         from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
         from fabric_protos.ledger.queryresult import kv_query_result_pb2 as kv_pb
 
