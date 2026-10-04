@@ -45,7 +45,7 @@ import json
 from dataclasses import dataclass
 from typing import List
 
-from src.fabric_contract_api import (
+from fabric_chaincode_python.fabric_contract_api import (
     Contract,
     ContractChaincode,
     TransactionContextInterface,

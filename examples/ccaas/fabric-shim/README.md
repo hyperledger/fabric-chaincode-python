@@ -1,7 +1,7 @@
 # fabric-shim Examples (CCAAS)
 
 These examples use the low-level **`fabric_shim`** package directly. You
-subclass [`Chaincode`](../../../src/fabric_shim/interfaces.py) and write
+subclass [`Chaincode`](../../../src/fabric_chaincode_python/fabric_shim/interfaces.py) and write
 `init` / `invoke` methods, dispatching on the function name by hand.
 
 ## When to choose fabric-shim

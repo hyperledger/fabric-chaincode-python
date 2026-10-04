@@ -43,7 +43,7 @@ def _load_example_module():
 
 example_main = _load_example_module()
 
-from src.fabric_contract_api import (  # noqa: E402
+from fabric_chaincode_python.fabric_contract_api import (  # noqa: E402
     Contract,
     ContractChaincode,
 )

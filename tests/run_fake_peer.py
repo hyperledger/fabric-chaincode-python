@@ -9,8 +9,8 @@ from fabric_protos.peer import chaincode_shim_pb2 as ccshim_pb2
 from fabric_protos.peer import chaincode_pb2 as cc_pb2
 from fabric_protos.peer import proposal_response_pb2 as pr_pb
 
-from src.fabric_shim.handler import Handler
-from src.fabric_shim.interfaces import Chaincode
+from fabric_chaincode_python.fabric_shim.handler import Handler
+from fabric_chaincode_python.fabric_shim.interfaces import Chaincode
 
 
 class TestChaincode(Chaincode):

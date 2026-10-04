@@ -28,7 +28,7 @@ from typing import Any, Dict, List, Optional
 # Allow running tests directly from the repository root.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src.fabric_contract_api import (  # noqa: E402
+from fabric_chaincode_python.fabric_contract_api import (  # noqa: E402
     Contract,
     ContractChaincode,
     JSONSerializer,
@@ -207,7 +207,7 @@ class ContractApiTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_json_serializer_round_trip(self):
         s = JSONSerializer()
-        from src.fabric_contract_api.metadata import ParameterMetadata, ComponentMetadata
+        from fabric_chaincode_python.fabric_contract_api.metadata import ParameterMetadata, ComponentMetadata
         value, err = s.from_string("true", bool, ParameterMetadata(name="param0", schema={"type": "boolean"}), ComponentMetadata())
         self.assertIsNone(err)
         self.assertEqual(value, True)

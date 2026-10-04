@@ -80,8 +80,8 @@ for more details on the CCAAS architecture.
 
 ## Related Documentation
 
-- [`fabric_shim` package](../src/fabric_shim/) — low-level chaincode shim.
-- [`fabric_contract_api` package](../src/fabric_contract_api/) — high-level
+- [`fabric_shim` package](../src/fabric_chaincode_python/fabric_shim/) — low-level chaincode shim.
+- [`fabric_contract_api` package](../src/fabric_chaincode_python/fabric_contract_api/) — high-level
   contract API (Python port of `fabric-contract-api-go`).
 - [Hyperledger Fabric Official Docs](https://hyperledger-fabric.readthedocs.io/)
 - [CCAAS Architecture](https://hyperledger-fabric.readthedocs.io/en/latest/cc_service.html)

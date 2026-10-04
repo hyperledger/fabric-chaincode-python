@@ -75,7 +75,7 @@ swap:
 
 - Single self-contained file.
 - Resolves the repository root at runtime by walking up the parent
-  chain looking for `src/fabric_shim` (or `src/fabric_contract_api`).
+  chain looking for `src/fabric_chaincode_python/fabric_shim` (or `src/fabric_chaincode_python/fabric_contract_api`).
   This makes the example runnable from any working directory.
 - Exposes a `build_chaincode()` factory (used by tests) and a `main()`
   entry point.
@@ -153,8 +153,8 @@ Each README follows this template:
 
 Each example:
 
-- References the parent `src/fabric_shim/` and / or
-  `src/fabric_contract_api/` for the framework.
+- References the parent `src/fabric_chaincode_python/fabric_shim/` and / or
+  `src/fabric_chaincode_python/fabric_contract_api/` for the framework.
 - Uses the parent `requirements.txt` or specifies its own subset.
 - Operates independently once deployed — the chaincode process does not
   need the source tree at runtime as long as `PYTHONPATH=/app` is set

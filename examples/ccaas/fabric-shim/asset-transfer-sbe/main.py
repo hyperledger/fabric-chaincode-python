@@ -23,9 +23,9 @@ import json
 import logging
 
 from fabric_protos.peer import proposal_response_pb2 as pb
-from src.fabric_shim.interfaces import Chaincode, ChaincodeStubInterface
-from src.fabric_shim.response import ResponseCode
-from src.fabric_shim.server import start
+from fabric_chaincode_python.fabric_shim.interfaces import Chaincode, ChaincodeStubInterface
+from fabric_chaincode_python.fabric_shim.response import ResponseCode
+from fabric_chaincode_python.fabric_shim.server import start
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
