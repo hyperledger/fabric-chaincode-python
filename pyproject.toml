@@ -1,19 +1,27 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "fabric-chaincode-python"
-version = "2.5.3"
-description = "Hyperledger Fabric chaincode shim and contract API for Python (experimental)"
+dynamic = ["version"]
+description = "Hyperledger Fabric chaincode shim and contract API for Python"
 readme = "README.md"
-license = {text = "Apache License v2.0"}
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Hyperledger Community" }]
 requires-python = ">=3.10"
+keywords = ["Hyperledger", "Fabric", "Chaincode", "Python"]
 classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries",
 ]
+
 dependencies = [
     "grpcio>=1.83.1,<2.0.0",
     "grpclib>=0.4.3",
@@ -21,9 +29,18 @@ dependencies = [
     "hyperledger-fabric-protos>=0.3.7.dev1,<0.4.0",
     "jsonschema>=4.0.0"
 ]
-keywords = ["Hyperledger", "Fabric", "Chaincode", "Python"]
+
+[project.urls]
+Homepage = "https://github.com/hyperledger/fabric-chaincode-python"
+Repository = "https://github.com/hyperledger/fabric-chaincode-python"
+Issues = "https://github.com/hyperledger/fabric-chaincode-python/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
+[tool.setuptools.dynamic]
+version = {attr = "fabric_chaincode_python.version.VERSION"}
