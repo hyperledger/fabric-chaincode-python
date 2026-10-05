@@ -44,3 +44,6 @@ testpaths = ["tests"]
 
 [tool.setuptools.dynamic]
 version = {attr = "fabric_chaincode_python.version.VERSION"}
+
+[tool.setuptools.package-data]
+fabric_chaincode_python = ["fabric_contract_api/metadata/schema/schema.json"]
