@@ -45,8 +45,59 @@ jobs:
       - name: Install pip-audit
         run: python -m pip install pip-audit
 
-      - name: Audit requirements.txt
-        run: pip-audit -r requirements.txt
+      - name: Audit requirements.txt (JSON)
+        run: |
+          pip-audit -r requirements.txt --format json --output audit-requirements.json
 
-      - name: Audit installed environment
-        run: pip-audit
+      - name: Audit installed environment (JSON)
+        run: |
+          pip-audit --format json --output audit-env.json
+
+      - name: Publish pip-audit summary to run summary
+        env:
+          GITHUB_STEP_SUMMARY: ${{ github.step_summary }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+
+          def summarize(path):
+              p = pathlib.Path(path)
+              if not p.exists():
+                  return 0
+              try:
+                  d = json.loads(p.read_text())
+                  if isinstance(d, list):
+                      return len(d)
+                  if isinstance(d, dict):
+                      for k in ('vulns','vulnerabilities','results'):
+                          if k in d and isinstance(d[k], list):
+                              return len(d[k])
+                      # Fallback: count top-level list-like values
+                      total = 0
+                      for v in d.values():
+                          if isinstance(v, list):
+                              total += len(v)
+                      return total
+              except Exception:
+                  return 0
+
+          req = summarize('audit-requirements.json')
+          env = summarize('audit-env.json')
+          summary = f"## pip-audit summary\n- requirements.txt vulnerabilities: {req}\n- installed environment vulnerabilities: {env}\n"
+          print(summary)
+          target = os.environ.get('GITHUB_STEP_SUMMARY')
+          if target:
+              with open(target, 'a') as fh:
+                  fh.write(summary)
+          else:
+              # Fallback to printing if summary file not available in older runners
+              print('GITHUB_STEP_SUMMARY not set; summary printed above')
+          PY
+
+      - name: Upload pip-audit JSON artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-results
+          path: |
+            audit-requirements.json
+            audit-env.json
