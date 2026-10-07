@@ -24,12 +24,25 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tag="$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.tag_name')"
+          # Attempt to get the latest release tag from GitHub Releases API
+          tag="$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.tag_name' 2>/dev/null || echo "")"
+
+          # If no release (or API failed), try the repository tags list via the API
           if [ -z "${tag}" ] || [ "${tag}" = "null" ]; then
-            echo "::error::No releases found in ${GITHUB_REPOSITORY}"
-            exit 1
+            tag="$(gh api "repos/${GITHUB_REPOSITORY}/tags" --jq '.[0].name' 2>/dev/null || echo "")"
           fi
+
+          # If still empty, log warning and use main branch as a safe default
+          if [ -z "${tag}" ]; then
+            echo "::warning::No releases or tags found in ${GITHUB_REPOSITORY}, using main branch for scan"
+            tag="main"
+          fi
+
           echo "value=${tag}" >> "${GITHUB_OUTPUT}"
+
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
 
   scan-release:
     name: Scan ${{ needs.latest-release-version.outputs.tag_name }}
